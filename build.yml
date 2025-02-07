@@ -1,0 +1,49 @@
+---
+- name: BAU [trigger cicd pipeline]
+  hosts: localhost
+  tasks:
+    - name: Download project source...
+      git:
+        repo: https://
+        dest: .
+      register: git_source
+
+    - name: Change to git directory
+      command: chdir={{ git_source }}    
+
+    - name: Authenticate and get authorization from AWS
+      aws_assume_role:
+        role_arn: "arn:aws:iam::{{ accountID }}:role/{{ userAdm }}"
+        duration: 3600
+      register: assumed_role
+        
+    - name: Set AWS region
+      set_fact:
+        region: "{{ assumed_role.region }}"
+
+    - name: Declare and define required variables using Ansible modules
+      set_fact:
+        dbusername: "{{ lookup('aws_secret', secretdbid) | json_query('SecretString.username') }}"
+        dbpassword: "{{ lookup('aws_secret', secretdbid) | json_query('SecretString.password') }}"
+        database: "{{ lookup('aws_secret', secretdbid) | json_query('SecretString.database') }}"
+    
+    - name: Building image for web app
+      loop: "{{ docker_files }}"
+      tasks:
+        - name: Build images
+          docker_image:
+            name : "{{ item }}"
+            state: present
+            build:
+              path: "images/{{ item }}"
+              build_args:
+                dbusername: "{{ dbusername }}"
+                dbpassword: "{{ dbpassword }}"
+                database: "{{ database }}"
+                secretdbid: "{{ secretdbid }}"
+      
+      vars:
+        docker_files:
+          - webApp1
+          - webApp2
+          - webApp3
