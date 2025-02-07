@@ -1,0 +1,27 @@
+FROM nginx
+
+ARG secretdbid
+ARG dbusername
+ARG dbpassword
+ARG database
+
+ENV DBCRED=$secretdbid
+ENV POSTGRES_USER=$dbusername
+ENV POSTGRES_PASSWORD=$dbpassword
+ENV POSTGRES_DB=$database
+
+RUN apt update && apt install -y python3-pip
+RUN apt install -y python3-boto3
+
+COPY web1.html /usr/share/nginx/html/index.html
+COPY default.conf /etc/nginx/conf.d/default.conf
+ADD path.tar.gz /usr/share/
+
+COPY dbchecker.sh /usr/local/bin/check_db_status
+RUN chmod +x /usr/local/bin/check_db_status
+
+RUN mkdir -p /opt/scripts
+COPY starter.sh /opt/scripts/starter.sh
+RUN chmod +x /opt/scripts/starter.sh
+
+EXPOSE 80

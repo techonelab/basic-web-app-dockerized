@@ -1,0 +1,12 @@
+FROM postgres:latest
+
+ENV DBCRED=$secretdbid
+ENV POSTGRES_USER=$dbuser
+ENV POSTGRES_PASSWORD=$dbpass
+ENV POSTGRES_DB=$database
+
+VOLUME /var/lib/postgresql/data
+
+EXPOSE 5432
+
+ENTRYPOINT ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
