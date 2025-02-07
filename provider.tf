@@ -10,6 +10,6 @@ terraform {
     key     = "demotfstate/terraform.tfstate"
     encrypt = true
     region  = "ap-southeast-1"
-    use_lockfile = true #comment this out on first terraform init command then uncomment and rerun terraform init command
+    #use_lockfile = true #comment this out on first terraform init command then uncomment and rerun terraform init command
   }
 }

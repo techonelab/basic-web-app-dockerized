@@ -1,22 +1,22 @@
 #update all values here
-#export TF_VAR_tfbucket="#change"
-#export TF_VAR_tfstatepath="##change"
-#export secretdbid="#change"
-#export TF_VAR_accountId="#change"
-#export TF_VAR_region="ap-southeast-1"
-#export TF_VAR_main_cidr="10.0.0.0/16"
-#export TF_VAR_privateSubApne1a_cidr="10.0.1.0/24"
-#export TF_VAR_publicSubApne1a_cidr="10.0.2.0/24"
-#export TF_VAR_privateSubApne1c_cidr="10.0.3.0/24"
-#export TF_VAR_publicSubApne1c_cidr="10.0.4.0/24"
-#export TF_VAR_project_name="demoShiftCare"
-#export TF_VAR_ecs_service_count="3"
-#export TF_VAR_roleAdm="ecsAdmin"
-#export TF_VAR_selfsignedcert="testonly.crt"
-#export TF_VAR_DBCRED=$secretdbid
-#export TF_VAR_dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}')
-#export TF_VAR_dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}')
-#export TF_VAR_database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}'|sed 's/\}"//g')
-#export dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}')
-#export dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}')
-#export database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}'|sed 's/\}"//g')
+export TF_VAR_tfbucket="#change"
+export TF_VAR_tfstatepath="#change"
+export secretdbid="#change"
+export TF_VAR_accountId="#change"
+export TF_VAR_region="#change"
+export TF_VAR_main_cidr="1#change"
+export TF_VAR_privateSubApne1a_cidr="#change"
+export TF_VAR_publicSubApne1a_cidr="#change"
+export TF_VAR_privateSubApne1c_cidr="#change"
+export TF_VAR_publicSubApne1c_cidr="#change"
+export TF_VAR_project_name="#change"
+export TF_VAR_ecs_service_count="#change"
+export TF_VAR_roleAdm="#change"
+export TF_VAR_selfsignedcert="#change.crt"
+export TF_VAR_DBCRED=$secretdbid
+export TF_VAR_dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}')
+export TF_VAR_dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}')
+export TF_VAR_database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}'|sed 's/\}"//g')
+export dbusername=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$2}' | awk -F',' '{print$1}')
+export dbpassword=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}')
+export database=$(aws secretsmanager get-secret-value --secret-id `echo $secretdbid` | awk 'NR==5{print$2}' | awk -F':' '{print$3}' | awk -F',' '{print$1}'|sed 's/\}"//g')

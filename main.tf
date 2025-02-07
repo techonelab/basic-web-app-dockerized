@@ -655,7 +655,7 @@ resource "aws_ecs_task_definition" "ecsTaskDef2" {
   [
     {
       "name" : "${var.task_families_name[1]}",
-      "image" : "${local.accountId}:dkr.ecr.${var.publicSubApne1c}.amazonaws.com/${var.task_families_name[1]}:latest",
+      "image" : "${local.accountId}:dkr.ecr.${var.region}.amazonaws.com/${var.task_families_name[1]}:latest",
       "cpu" : 0,
       "portMappings" :   [{
         "containerPort" : 80,
